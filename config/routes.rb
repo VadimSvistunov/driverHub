@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
     get "/cars", to: "cars#index"
 
+    resources :orders, only: [:create, :update, :new]
+
 end
