@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
     resources :cars, only: [:new, :index, :create]
 
+    resources :orders, only: [:create, :update, :new]
+
 end
