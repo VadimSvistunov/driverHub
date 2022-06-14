@@ -10,9 +10,7 @@ class OrdersController < ApplicationController
     end
 
     def create
-        @order = car.orders.build(order_params)
-        #@order.car_id = @car_id
-
+        @order = Order.new(order_params)
         if @order.save
             redirect_to "/"
         else

@@ -7,6 +7,5 @@ Rails.application.routes.draw do
     end
 
 
-    resources :orders, only: [:create, :update, :new]
 
 end
