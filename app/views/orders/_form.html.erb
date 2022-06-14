@@ -1,0 +1,27 @@
+<%= form_with model: @order, method: @method do |form| %>
+  <div>
+    <%= form.label :customer_id %><br>
+    <%= form.text_field :customer_id %>
+  </div>
+
+  <div>
+    <%= form.label :car_id %><br>
+    <%= form.text_field :car_id %>
+  </div>
+
+  <div>
+    <%= form.label :started_at %><br>
+    <%= form.datetime_local_field :started_at %>
+  </div>
+
+  <div>
+    <%= form.label :finished_at %><br>
+    <%= form.datetime_local_field :finished_at %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
