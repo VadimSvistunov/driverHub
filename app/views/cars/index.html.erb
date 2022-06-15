@@ -1,7 +1,9 @@
 <h1>Cars</h1>
 
 <ul>
-  <% @cars.each do |car| %>
-    <li><%= car.id %> <br> <%= car.model %></li>
+  <% @cars.map do |car| %>
+    <li><%= link_to car.model, new_car_order_url(car_id: car.id) %>
+      <br><%=car.price%>
+      <br><%= car.status %></li>
   <% end %>
 </ul>

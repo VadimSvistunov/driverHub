@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
 
-    has_many :cars
+    belongs_to :cars
 
 end
