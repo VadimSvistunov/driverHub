@@ -1,12 +1,8 @@
-<%= form_with model: @order, method: @method do |form| %>
+<%= form_with model: @order do |form| %>
+
   <div>
     <%= form.label :customer_id %><br>
     <%= form.text_field :customer_id %>
-  </div>
-
-  <div>
-    <%= form.label :car_id %><br>
-    <%= form.text_field :car_id %>
   </div>
 
   <div>

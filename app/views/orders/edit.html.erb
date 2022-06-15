@@ -1,3 +1,5 @@
 <h1>Edit order</h1>
+<h4><%= @car_id.to_param %></h4>
 
-<%= render partial: "form", locals: {order: @order, method: :patch} %>
+
+<%= render partial: "form", locals: {url: car_order_path(:car_id, :id)} %>
