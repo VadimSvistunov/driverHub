@@ -1,6 +1,6 @@
-FROM alpine:3.15
+FROM ruby:3.1-alpine
 
-RUN apt update -qq && apt install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
 WORKDIR /driverHub
 
