@@ -5,22 +5,13 @@ class OrdersController < ApplicationController
     end
 
     def new
-<<<<<<< HEAD
         @order = car.orders.build
         @car_id = params[:car_id]
-=======
-        @order = Order.new
-        @car_id = params.permit(:car_id)
->>>>>>> #2 minor fixes
     end
 
     def create
-        @order = Order.new(order_params)
-<<<<<<< HEAD
-=======
-        @order.car_id = @car_id
+        @order = car.orders.build(order_params)
 
->>>>>>> #2 minor fixes
         if @order.save
             redirect_to "/"
         else
