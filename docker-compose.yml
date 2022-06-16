@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: vadim
+      POSTGRES_PASSWORD: 1234
+      PGDATA: /var/lib/postgresql/data
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/driverHub
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
