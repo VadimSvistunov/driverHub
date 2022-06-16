@@ -1,13 +1,17 @@
 class OrdersController < ApplicationController
 
+    def car
+        @car ||= Car.find(params[:car_id])
+    end
+
     def new
-        @order = Order.new
-        @car_id = params.permit(:car_id)
+        @order = car.orders.build
+        @car_id = params[:car_id]
     end
 
     def create
-        @order = Order.new(order_params)
-        @order.car_id = @car_id
+        @order = car.orders.build(order_params)
+        #@order.car_id = @car_id
 
         if @order.save
             redirect_to "/"
