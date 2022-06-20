@@ -3,16 +3,16 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: vadim
+  username: driverhub
   password: 1234
-  host: localhost
+  host: db
   port: 5432
 
 development:
   <<: *default
-  database: driverHub_development
+  database: driverhub_development
 
 test:
   <<: *default
-  database: driverHub_test
+  database: driverhub_test
 
