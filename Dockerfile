@@ -2,11 +2,11 @@ FROM ruby:3.1
 
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
-WORKDIR /driverHub
+WORKDIR /driverhub
 
 COPY Gemfile Gemfile.lock ./
 
-RUN bundle install
+RUN bundle update --bundler && bundle install
 
 EXPOSE 3000
 
