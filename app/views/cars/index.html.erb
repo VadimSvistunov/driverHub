@@ -4,4 +4,7 @@
   <% @cars.each do |car| %>
     <li><%= car.id %> <br> <%= car.model %></li>
   <% end %>
+  <br>
+  <%= link_to "Add new car", new_car_path  %>
 </ul>
+

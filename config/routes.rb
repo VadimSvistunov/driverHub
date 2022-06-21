@@ -2,6 +2,6 @@ Rails.application.routes.draw do
 
     root "cars#index"
 
-    get "/cars", to: "cars#index"
+    resources :cars, only: [:new, :index, :create]
 
 end
