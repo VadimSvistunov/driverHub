@@ -1,0 +1,15 @@
+<%= form_with model: @car do |form| %>
+  <div>
+    <%= form.label :model %><br>
+    <%= form.text_field :model %>
+  </div>
+
+  <div>
+    <%= form.label :price %><br>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
