@@ -7,7 +7,7 @@ services:
   db:
     image: postgres
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - driverhub-db:/var/lib/postgresql/data
     environment:
       POSTGRES_DB:   driverhub
       POSTGRES_USER: driverhub
@@ -37,3 +37,7 @@ services:
       - "5000:5000"
     depends_on:
       - db
+
+volumes:
+  driverhub-db:
+    external: true
