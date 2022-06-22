@@ -30,6 +30,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-node
+    command: npm run dev
     volumes:
       - .:/nodeapi
     ports:
