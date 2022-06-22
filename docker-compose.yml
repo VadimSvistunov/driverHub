@@ -24,8 +24,7 @@ services:
       - .:/driverhub
     ports:
       - "3000:3000"
-    depends_on:
-      - db
+
   api:
     build:
       context: .
@@ -35,8 +34,6 @@ services:
       - .:/nodeapi
     ports:
       - "5000:5000"
-    depends_on:
-      - db
 
 volumes:
   driverhub-db:
