@@ -2,7 +2,7 @@ FROM node:16.15.1
 
 WORKDIR /nodeapi
 
-COPY src/package.json src/package-lock.json ./
+COPY package.json package-lock.json ./
 
 RUN npm i
 
