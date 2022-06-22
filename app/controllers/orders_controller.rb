@@ -1,12 +1,11 @@
 class OrdersController < ApplicationController
+    before_action :find_car
+    before_action :find_order, only: %i[edit update]
 
-    def car
-        @car ||= Car.find(params[:car_id])
-    end
+    attr_reader :car, :order
 
     def new
         @order = car.orders.build
-        @car_id = params[:car_id]
     end
 
     def create
@@ -15,21 +14,32 @@ class OrdersController < ApplicationController
         if @order.save
             redirect_to "/"
         else
-            render :new, status: 400
+            render :new, status: :bad_request
         end
     end
 
     def edit
-        @order = Order.find(params[:id])
     end
 
     def update
-        Order.where(id: params[:id]).update(order_params)
-        redirect_to "/"
+        if order.update(order_params)
+            redirect_to "/"
+        else
+            render :edit, status: :bad_request
+        end
     end
 
     private
+
     def order_params
-        params.permit(:customer_id, :started_at, :finished_at)
+        params.require(:order).permit(:customer_id, :started_at, :finished_at)
+    end
+
+    def find_order
+        @order = car.orders.find(params[:id])
+    end
+
+    def find_car
+        @car = Car.find(params[:car_id])
     end
 end

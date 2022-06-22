@@ -3,11 +3,9 @@ class CreateOrders < ActiveRecord::Migration[7.0]
     create_table :orders do |t|
       t.datetime :started_at
       t.datetime :finished_at
+      t.belongs_to :car,      null: false, index: true
+      t.belongs_to :customer, null: false, index: true
       t.timestamps
     end
-
-    add_reference :orders, :customer, index: false
-    add_reference :orders, :car, index: false
-
   end
 end

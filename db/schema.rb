@@ -17,14 +17,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_09_123743) do
   create_table "cars", force: :cascade do |t|
     t.string "model"
     t.integer "price"
-    t.boolean "status"
+    t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.integer "card_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,10 +31,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_09_123743) do
   create_table "orders", force: :cascade do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
+    t.bigint "car_id", null: false
+    t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "customer_id"
-    t.bigint "car_id"
+    t.index ["car_id"], name: "index_orders_on_car_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
 end

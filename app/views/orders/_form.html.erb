@@ -1,5 +1,4 @@
-<%= form_with  model: @order do |form| %>
-
+<%= form_with  model: [@car, @order] do |form| %>
   <div>
     <%= form.label :customer_id %><br>
     <%= form.text_field :customer_id %>
