@@ -13,6 +13,18 @@ services:
       POSTGRES_USER: driverhub
       POSTGRES_PASSWORD: 1234
       PGDATA: /var/lib/postgresql/data
+
+  migrations:
+    build:
+      context: .
+      dockerfile: Dockerfile-rails
+    command: rails db:migrate
+    environment:
+      <<: *env
+    volumes:
+      - .:/driverhub
+    restart: on-failure
+
   web:
     build:
       context: .
