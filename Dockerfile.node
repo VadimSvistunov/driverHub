@@ -5,5 +5,3 @@ WORKDIR /nodeapi
 COPY package.json package-lock.json ./
 
 RUN npm i
-
-COPY src/ ./
