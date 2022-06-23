@@ -1,4 +1,4 @@
-version: "3"
+version: "3.4"
 
 x-env: &env
   DATABASE_URL: postgres://driverhub:1234@db:5432/driverhub
