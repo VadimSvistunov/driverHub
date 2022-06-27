@@ -1,0 +1,7 @@
+FROM node:16.15.1
+
+WORKDIR /nodeapi
+
+COPY package.json package-lock.json ./
+
+RUN npm i

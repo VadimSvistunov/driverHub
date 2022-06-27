@@ -1,21 +1,63 @@
-version: "3"
+version: "3.4"
+
+x-env: &env
+  DATABASE_URL: postgres://railsapp:1234@db:5432/railsapp
+  
 services:
   db:
     image: postgres
-    restart: always
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+      - driverhub-db:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: driverhub
+      POSTGRES_DB:   railsapp
+      POSTGRES_USER: railsapp
       POSTGRES_PASSWORD: 1234
       PGDATA: /var/lib/postgresql/data
+
+  migrations:
+    build:
+      context: .
+      dockerfile: Dockerfile.rails
+    command: rails db:migrate
+    environment:
+      <<: *env
+    volumes:
+      - .:/driverhub
+    restart: on-failure
+
   web:
-    build: .
-    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.rails
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      <<: *env
     volumes:
       - .:/driverhub
     ports:
       - "3000:3000"
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    command: npm run dev
+    volumes:
+      - .:/nodeapi
+    environment:
+      PORT: 5000
+      DB_NAME: nodeapp
+      DB_USER: nodeapp
+      DB_PASSWORD: 1234
+      DB_DIALECT: 'postgres'
+      DB_HOST: db
+      DB_PORT: 5432
+    ports:
+      - "5000:5000"
     depends_on:
       - db
+
+volumes:
+  driverhub-db:
+    external: true
