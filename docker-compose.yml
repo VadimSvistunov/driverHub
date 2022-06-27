@@ -1,17 +1,17 @@
 version: "3.4"
 
 x-env: &env
-  DATABASE_URL: postgres://driverhub:1234@db:5432/driverhub
-
+  DATABASE_URL: postgres://railsapp:1234@db:5432/railsapp
+  
 services:
   db:
     image: postgres
     volumes:
-      - ./init_skripts:/docker-entrypoint-initdb.d
+      - ./db/init:/docker-entrypoint-initdb.d
       - driverhub-db:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB:   driverhub
-      POSTGRES_USER: driverhub
+      POSTGRES_DB:   railsapp
+      POSTGRES_USER: railsapp
       POSTGRES_PASSWORD: 1234
       PGDATA: /var/lib/postgresql/data
 
@@ -47,16 +47,16 @@ services:
       - .:/nodeapi
     environment:
       PORT: 5000
-      DB_NAME: driverhub
-      DB_USER: driverhub
+      DB_NAME: nodeapp
+      DB_USER: nodeapp
       DB_PASSWORD: 1234
       DB_DIALECT: 'postgres'
       DB_HOST: db
       DB_PORT: 5432
-      DB_SOCKET: /var/run/postgresql/.s.PGSQL.5432
     ports:
       - "5000:5000"
-    restart: on-failure
+    depends_on:
+      - db
 
 volumes:
   driverhub-db:
