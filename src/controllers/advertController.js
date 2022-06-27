@@ -1,6 +1,9 @@
+const {Advert} = require('../models/models')
+
 class AdvertController {
 
-    async create (res,req) {
+    async create (req, res) {
+    
         const {title, description} = req.body
         if (!title || !description) {
             return res.status(400).send({ message: "Invalid data" })
@@ -13,7 +16,7 @@ class AdvertController {
         return res.json(advert)
     }
 
-    async show (res,req) {
+    async show (req, res) {
         const {id} = req.params
         const advert = await Advert.findOne({where: {id}})
         if (!advert) {

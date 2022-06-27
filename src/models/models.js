@@ -1,4 +1,4 @@
-const sequelize = requestAnimationFrame('../db')
+const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
 const Advert = sequelize.define("advert", {
