@@ -3,22 +3,23 @@ require 'json'
 
 module Adverts
   class Client
-    def initialize
-      @url = "http://api:5000/api/advert/"
+    cattr_accessor :config, instance_writer: false, default: Config.new
+
+    def self.configure
+      yield config
     end
 
     def show(id)
-      @response = conn.get ("#{id}")
+      @response = connection.get("api/adverts/#{id}")
       @response.body
     end
 
     private
 
-    def conn
-      conn = Faraday.new(@url) do |f|
-        f.request :json
+    def connection
+      @connection ||= Faraday.new(url: config.url) do |f|
+        f.request  :json
         f.response :json
-        f.adapter :net_http
       end
     end
 
