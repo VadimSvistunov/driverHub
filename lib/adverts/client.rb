@@ -7,7 +7,7 @@ module Adverts
       @url = "http://api:5000/api/advert/"
     end
 
-    def show id
+    def show(id)
       @response = conn.get ("#{id}")
       @response.body
     end
