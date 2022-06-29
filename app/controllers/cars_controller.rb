@@ -1,5 +1,9 @@
 class CarsController < ApplicationController
 
+    before_action :add_advert
+
+    attr_reader :advert
+
     def index
         @cars = Car.all
     end
@@ -18,6 +22,12 @@ class CarsController < ApplicationController
 
 
     private
+
+    def add_advert
+        api = NodeApi.new 
+        
+        @advert = api.show(1)
+    end
 
     def car_attribute
         params.require(:car).permit(:model, :price)
