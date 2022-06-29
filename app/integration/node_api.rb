@@ -1,7 +1,7 @@
 require 'faraday'
 require 'json'
 
-class NodeApi   
+class NodeApi
 
     def initialize
         @url = "http://api:5000/api/advert/"
@@ -18,11 +18,11 @@ class NodeApi
         conn = Faraday.new(@url) do |f|
             f.request :json
             f.response :json
-            f.adapter :net_http 
+            f.adapter :net_http
         end
     end
 
-    # def response 
+    # def response
     #     pp @response.body
     #     #pp JSON.parse(@response.body)
     # end
