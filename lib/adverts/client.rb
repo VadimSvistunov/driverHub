@@ -14,6 +14,10 @@ module Adverts
       @response.body
     end
 
+    def cars(options = {})
+      connection.get("api/cars").body.map { |data| Car.from_api(data) }
+    end
+
     private
 
     def connection
