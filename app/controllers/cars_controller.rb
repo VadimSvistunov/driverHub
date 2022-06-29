@@ -24,8 +24,8 @@ class CarsController < ApplicationController
     private
 
     def add_advert
-        api = NodeApi.new 
-        
+        api = Adverts::Client.new
+
         @advert = api.show(1)
     end
 
