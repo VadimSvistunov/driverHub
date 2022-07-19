@@ -2,7 +2,7 @@ version: "3.4"
 
 x-env: &env
   DATABASE_URL: postgres://railsapp:1234@db:5432/railsapp
-  
+
 services:
   db:
     image: postgres
@@ -33,6 +33,8 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     environment:
       <<: *env
+      ADVERTS_HOST: api
+      ADVERTS_PORT: 5000
     volumes:
       - .:/driverhub
     ports:

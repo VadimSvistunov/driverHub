@@ -1,7 +1,11 @@
 class CarsController < ApplicationController
 
+    before_action :add_advert
+
+    attr_reader :advert
+
     def index
-        @cars = Car.all
+        @cars = CarsWithAdverts.new(Car.all)
     end
 
     def new
